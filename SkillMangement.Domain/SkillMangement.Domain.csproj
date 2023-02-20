@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validator\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SkillManagement.Contracts\SkillManagement.Contracts.csproj" />
+    <ProjectReference Include="..\SkillManagement.Data.Models\SkillManagement.Data.Models.csproj" />
+    <ProjectReference Include="..\SkillManagement.Repositary\SkillManagement.Repositary.csproj" />
+  </ItemGroup>
+
+</Project>

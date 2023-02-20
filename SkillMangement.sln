@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillMangement.API", "SkillMangement\SkillMangement.API.csproj", "{AC723F2F-7995-46B9-9620-A4AF84C4EF21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillManagement.Repositary", "SkillManagement.Repositary\SkillManagement.Repositary.csproj", "{3EAF0301-95F4-4F6F-BBF0-50E07F862586}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillManagement.Data.Models", "SkillManagement.Data.Models\SkillManagement.Data.Models.csproj", "{3BAD37E9-8DBF-481D-B27F-9BFB149E918B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillMangement.Domain", "SkillMangement.Domain\SkillMangement.Domain.csproj", "{A9BE3573-35E7-4AE5-B24B-77BF8C1D0A74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillManagement.DbContext", "SkillManagement.DbContext\SkillManagement.DbContext.csproj", "{5DDA310D-61DC-4FA0-924C-467F85FD6B46}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SkillManagement.Contracts", "SkillManagement.Contracts\SkillManagement.Contracts.csproj", "{723C7F1D-A5C3-4A2B-BBCB-D43C0188C860}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC723F2F-7995-46B9-9620-A4AF84C4EF21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC723F2F-7995-46B9-9620-A4AF84C4EF21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC723F2F-7995-46B9-9620-A4AF84C4EF21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC723F2F-7995-46B9-9620-A4AF84C4EF21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EAF0301-95F4-4F6F-BBF0-50E07F862586}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EAF0301-95F4-4F6F-BBF0-50E07F862586}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EAF0301-95F4-4F6F-BBF0-50E07F862586}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EAF0301-95F4-4F6F-BBF0-50E07F862586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BAD37E9-8DBF-481D-B27F-9BFB149E918B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BAD37E9-8DBF-481D-B27F-9BFB149E918B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BAD37E9-8DBF-481D-B27F-9BFB149E918B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BAD37E9-8DBF-481D-B27F-9BFB149E918B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9BE3573-35E7-4AE5-B24B-77BF8C1D0A74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9BE3573-35E7-4AE5-B24B-77BF8C1D0A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9BE3573-35E7-4AE5-B24B-77BF8C1D0A74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9BE3573-35E7-4AE5-B24B-77BF8C1D0A74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DDA310D-61DC-4FA0-924C-467F85FD6B46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DDA310D-61DC-4FA0-924C-467F85FD6B46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DDA310D-61DC-4FA0-924C-467F85FD6B46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DDA310D-61DC-4FA0-924C-467F85FD6B46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{723C7F1D-A5C3-4A2B-BBCB-D43C0188C860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{723C7F1D-A5C3-4A2B-BBCB-D43C0188C860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{723C7F1D-A5C3-4A2B-BBCB-D43C0188C860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{723C7F1D-A5C3-4A2B-BBCB-D43C0188C860}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92C9CA9C-4D72-4FF2-B230-6145FE506C18}
+	EndGlobalSection
+EndGlobal
