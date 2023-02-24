@@ -16,9 +16,12 @@ steps:
     displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     inputs:
       command: publish
-      publishWebProjects: false
+      publishWebProjects: true
       projects: 'SkillManagement-API/SkillManagement.csproj'
       arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
       zipAfterPublish: true
   - task: PublishBuildArtifacts@1
     displayName: 'publish artifacts'
+    inputs:
+      PathtoPublish: '$(build.artifactstagingdirectory)'
+    condition: succeededOrFailed()
