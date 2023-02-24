@@ -10,8 +10,6 @@ namespace SkillMangement.Domain.DomainInterfaces.Queries
 {
     public interface ITechnologyStack
     {
-        Task<IEnumerable<TechnologyStackDto>> Execute();
-
         Task<IEnumerable<TechnologyStackDto>> ExecuteByCategoryId(int? categoryId);
     }
 

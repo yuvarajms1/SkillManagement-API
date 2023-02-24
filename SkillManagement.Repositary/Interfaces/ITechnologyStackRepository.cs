@@ -11,7 +11,5 @@ namespace SkillManagement.Repositary.Interfaces
     {
         Task<IEnumerable<TechnologyStack>?> GetTechnologyByCategoryId(int? categoryId);
 
-        Task<IEnumerable<TechnologyStack>> GetAllTechnology();
-
     }
 }

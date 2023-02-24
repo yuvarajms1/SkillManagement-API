@@ -22,12 +22,7 @@ namespace SkillMangement.Domain.TechnologyStack.Queries
             _mapper = mapper;
             _techstackRepository = techstackRepository;
         }
-        public virtual async Task<IEnumerable<TechnologyStackDto>> Execute()
-        {
-            var result = await _techstackRepository.GetAllTechnology();
-            return _mapper.Map<IEnumerable<TechnologyStackDto>>(result);
-        }
-
+  
         public virtual async Task<IEnumerable<TechnologyStackDto>> ExecuteByCategoryId(int? categoryId)
         {
             var result = await _techstackRepository.GetTechnologyByCategoryId(categoryId);

@@ -16,11 +16,6 @@ namespace SkillManagement.Repositary
             this._context = context;
         }
 
-        public async Task<IEnumerable<TechnologyStack>> GetAllTechnology()
-        {
-            return await _context.Set<TechnologyStack>().ToListAsync();
-        }
-
         public async Task<IEnumerable<TechnologyStack>> GetTechnologyByCategoryId(int? categoryId)
         {
             if (categoryId == null)

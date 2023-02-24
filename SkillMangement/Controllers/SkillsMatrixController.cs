@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using SkillManagement.Contracts.Dto.SkillsMatrix;
 using SkillManagement.Data.Models;
 using SkillManagement.Repositary.Interfaces;
+using SkillMangement.API.Logging;
 using SkillMangement.Domain.DomainInterfaces.Queries;
 using SkillMangement.Domain.SkillMatrix.Commands;
 using SkillMangement.Domain.SkillMatrix.Queries;
@@ -19,6 +21,7 @@ namespace SkillManagement.API.Controllers
         private readonly ISkillMatrix _skillMatrix;
         private readonly ICreateSkillMatrix _createSkillMatrix;
         private readonly IUpdateSkillMatrix _updateSkillMatrix;
+        private static readonly ILogger Log = LogManager.CreateLogger(typeof(SkillsMatrixController).FullName);
 
         public SkillsMatrixController(IMapper mapper,
             ISkillMatrix skillMatrix, ICreateSkillMatrix createSkillMatrix, IUpdateSkillMatrix updateSkillMatrix)
@@ -32,24 +35,33 @@ namespace SkillManagement.API.Controllers
         [HttpGet("GetSkillMatrix")]
         public async Task<ActionResult> GetTechnologySkillMatrix(string? skillName)
         {
-            if (string.IsNullOrEmpty(skillName))
+            try
             {
-                return Ok("To search, a word should be of 3 letters or more.");
+                if (string.IsNullOrEmpty(skillName))
+                {
+                    return Ok("To search, a word should be of 3 letters or more.");
+                }
+
+                if (skillName.Trim().Length < 3)
+                {
+                    return Ok("To search, a word should be of 3 letters or more.");
+                }
+
+                var skillResults = await this._skillMatrix.Execute(skillName);
+
+                if (skillResults == null)
+                {
+                    throw new Exception($"Skill Matrix for the Skill {skillName} is not found.");
+                }
+
+                return Ok(skillResults);
             }
 
-            if (skillName.Trim().Length <3)
+            catch (Exception e)
             {
-                return Ok("To search, a word should be of 3 letters or more.");
+                Log.LogError($"Failed to get technology skillMatrix for the technology {skillName}. Exception: {e}");
+                return StatusCode((int)HttpStatusCode.InternalServerError);
             }
-            
-           var skillResults = await this._skillMatrix.Execute(skillName);
-
-            if (skillResults == null)
-            {
-                throw new Exception($"Skill Matrix for the Skill {skillName} is not found.");
-            }
-
-            return Ok(skillResults);
         }
 
         [HttpPost]
@@ -64,10 +76,12 @@ namespace SkillManagement.API.Controllers
           
             catch (DbUpdateException ex)
             {
-              return Conflict(ex.InnerException.Message);
+                Log.LogError($"Failed to create a new skill. DBUpdateException: {ex}, {skillMatrixDto} ");
+                return Conflict(ex.InnerException.Message);
             }
             catch (Exception ex)
             {
+                Log.LogError($"Failed to create a new skill. Exception: {ex}, {skillMatrixDto} ");
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
@@ -84,10 +98,12 @@ namespace SkillManagement.API.Controllers
 
             catch (DbUpdateException ex)
             {
+                Log.LogError($"Failed to update a skill. DBUpdateException: {ex}, {technologyStack} ");
                 return Conflict(ex.InnerException.Message);
             }
             catch (Exception ex)
             {
+                Log.LogError($"Failed to update a skill. Exception: {ex}, {technologyStack} ");
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }

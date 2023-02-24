@@ -36,7 +36,7 @@ namespace SkillMangement.Domain.SkillMatrix.Commands
                 {
                     TechnologySkillsMatrix techSkillMatrix = new TechnologySkillsMatrix();
                     techSkillMatrix.TechnologyId = skillMatrixDto.TechnologyStack[techIndex].Id;
-                    techSkillMatrix.EmployeeName = "Yuvaraj S";
+                    techSkillMatrix.EmployeeName = skillMatrixDto.EmployeeName;
                     techSkillMatrix.ProficiencyLevelId = skillMatrixDto.TechnologyStack[techIndex].SelectedProficiencyLevel;
                     technologySkillMatrixList.Add(techSkillMatrix);
                     techIndex++;

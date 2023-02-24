@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using SkillManagement.Data.Models;
 using SkillManagement.Repositary.Interfaces;
+using SkillMangement.API.Logging;
 using SkillMangement.Domain.DomainInterfaces.Queries;
 using SkillMangement.Domain.TechnologyStack.Queries;
+using System.Net;
 
 namespace SkillManagement.API.Controllers
 {
@@ -13,7 +15,7 @@ namespace SkillManagement.API.Controllers
     {
         private readonly IMapper _mapper;
         private readonly ITechnologyStack _technologystack;
-
+        private static readonly ILogger Log = LogManager.CreateLogger(typeof(TechnologyStackController).FullName);
         public TechnologyStackController(IMapper mapper,
             ITechnologyStack technologystack)
         {
@@ -24,25 +26,24 @@ namespace SkillManagement.API.Controllers
         [HttpGet("GetTechnologyStack")]
         public async Task<ActionResult> GetTechnology(int? categoryId)
         {
-            var result = await this._technologystack.ExecuteByCategoryId(categoryId);
-
-            if (result == null)
+            try
             {
-                throw new Exception($"Technology Stack for the CategoryId {categoryId} is not found.");
+                var result = await this._technologystack.ExecuteByCategoryId(categoryId);
+
+                if (result == null)
+                {
+                    throw new Exception($"Technology Stack for the CategoryId {categoryId} is not found.");
+                }
+
+                return Ok(result);
             }
-          
-            return Ok(result);
+
+            catch (Exception e)
+            {
+                Log.LogError($"Failed to get Technology stack. Exception: {e}");
+                return StatusCode((int)HttpStatusCode.InternalServerError);
+            }
         }
-
-
-        [HttpGet("GetAllTechnologyStack")]
-
-        public async Task<ActionResult> GetAllTechnology()
-        {
-            var result = await this._technologystack.Execute();
-            return Ok(result);
-        }
-
         
     }
 }
