@@ -1,29 +1,24 @@
 trigger:
-- master
-
+  - master
 pool:
-  vmImage: 'windows-latest'
-
+  vmImage: ubuntu-latest
 variables:
-  buildConfiguration: 'Release'
+  buildConfiguration: Release
 steps:
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'restore'
-    projects: '**/*.csproj'
-    feedsToUse: 'select'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'build'
-    projects: '**/*.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
-- task: DotNetCoreCLI@2
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
-    arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: test
+      projects: '**/*Test/*.csproj'
+      arguments: '--configuration $(buildConfiguration)'
+  - script: dotnet build --configuration $(buildConfiguration)
+    displayName: dotnet build $(buildConfiguration)
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    inputs:
+      command: publish
+      publishWebProjects: false
+      projects: 'SkillManagement-API/SkillManagement.csproj'
+      arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+      zipAfterPublish: true
+  - task: PublishBuildArtifacts@1
+    displayName: 'publish artifacts'
