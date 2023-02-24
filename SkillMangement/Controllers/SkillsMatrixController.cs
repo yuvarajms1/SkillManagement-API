@@ -17,16 +17,13 @@ namespace SkillManagement.API.Controllers
     [ApiController]
     public class SkillsMatrixController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly ISkillMatrix _skillMatrix;
         private readonly ICreateSkillMatrix _createSkillMatrix;
         private readonly IUpdateSkillMatrix _updateSkillMatrix;
         private static readonly ILogger Log = LogManager.CreateLogger(typeof(SkillsMatrixController).FullName);
 
-        public SkillsMatrixController(IMapper mapper,
-            ISkillMatrix skillMatrix, ICreateSkillMatrix createSkillMatrix, IUpdateSkillMatrix updateSkillMatrix)
+        public SkillsMatrixController(ISkillMatrix skillMatrix, ICreateSkillMatrix createSkillMatrix, IUpdateSkillMatrix updateSkillMatrix)
         {
-            this._mapper = mapper;
             this._skillMatrix = skillMatrix;
             this._createSkillMatrix = createSkillMatrix;
             this._updateSkillMatrix = updateSkillMatrix;
@@ -59,7 +56,7 @@ namespace SkillManagement.API.Controllers
 
             catch (Exception e)
             {
-                Log.LogError($"Failed to get technology skillMatrix for the technology {skillName}. Exception: {e}");
+                // Log.LogError($"Failed to get technology skillMatrix for the technology {skillName}. Exception: {e}");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
@@ -81,7 +78,7 @@ namespace SkillManagement.API.Controllers
             }
             catch (Exception ex)
             {
-                Log.LogError($"Failed to create a new skill. Exception: {ex}, {skillMatrixDto} ");
+                // Log.LogError($"Failed to create a new skill. Exception: {ex}, {skillMatrixDto} ");
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
@@ -103,7 +100,7 @@ namespace SkillManagement.API.Controllers
             }
             catch (Exception ex)
             {
-                Log.LogError($"Failed to update a skill. Exception: {ex}, {technologyStack} ");
+                // Log.LogError($"Failed to update a skill. Exception: {ex}, {technologyStack} ");
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }

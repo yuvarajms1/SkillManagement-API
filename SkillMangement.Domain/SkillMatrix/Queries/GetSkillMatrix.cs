@@ -46,7 +46,7 @@ namespace SkillMangement.Domain.SkillMatrix.Queries
                     technologyStackDto.CategoryId= skillMatrixResult.CategoryId;
                     technologyStackDto.Selected = Convert.ToBoolean(skillMatrixResult.Selected);
                     technologyStackDto.SelectedProficiencyLevel = skillMatrixResult.SelectedProficiencyLevel;
-                    int i = (int)(skilMatrixResultsDto.LongCount() - 1);
+                    int i = (int)(skilMatrixResultsDto.Count() - 1);
                     skilMatrixResultsDto[i].TechnologyStack.Add(technologyStackDto);
 
                 }

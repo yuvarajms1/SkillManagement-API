@@ -13,13 +13,10 @@ namespace SkillManagement.API.Controllers
     [ApiController]
     public class TechnologyStackController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly ITechnologyStack _technologystack;
         private static readonly ILogger Log = LogManager.CreateLogger(typeof(TechnologyStackController).FullName);
-        public TechnologyStackController(IMapper mapper,
-            ITechnologyStack technologystack)
+        public TechnologyStackController(ITechnologyStack technologystack)
         {
-            this._mapper = mapper;
             this._technologystack = technologystack;
         }
 
@@ -40,7 +37,7 @@ namespace SkillManagement.API.Controllers
 
             catch (Exception e)
             {
-                Log.LogError($"Failed to get Technology stack. Exception: {e}");
+                // Log.LogError($"Failed to get Technology stack. Exception: {e}");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }

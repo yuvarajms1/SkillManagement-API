@@ -13,14 +13,11 @@ namespace SkillManagement.API.Controllers
     [ApiController]
     public class ProficiencyLevelController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly IProficiencyLevel _proficiencyLevel;
         private static readonly ILogger Log = LogManager.CreateLogger(typeof(ProficiencyLevelController).FullName);
 
-        public ProficiencyLevelController(IMapper mapper,
-            IProficiencyLevel proficiencyLevel)
+        public ProficiencyLevelController(IProficiencyLevel proficiencyLevel)
         {
-            this._mapper = mapper;
             this._proficiencyLevel = proficiencyLevel;
         }
 
@@ -35,7 +32,7 @@ namespace SkillManagement.API.Controllers
             }
             catch (Exception e)
             {
-                Log.LogError($"Failed to get proficiencyLevel. Exception: {e}");
+                // Log.LogError($"Failed to get proficiencyLevel. Exception: {e}");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }

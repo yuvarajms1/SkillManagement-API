@@ -14,14 +14,11 @@ namespace SkillManagement.API.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly ICategories _getCategories;
         private static readonly ILogger Log = LogManager.CreateLogger(typeof(CategoriesController).FullName);
 
-        public CategoriesController(IMapper mapper,
-            ICategories getCategories)
+        public CategoriesController(ICategories getCategories)
         {
-            this._mapper = mapper;
             this._getCategories = getCategories;
         }
        
@@ -35,7 +32,7 @@ namespace SkillManagement.API.Controllers
             }
             catch (Exception e)
             {
-                Log.LogError($"Failed to get categories for the practice id {practicesId}. Exception: {e}");
+                // Log.LogError($"Failed to get categories for the practice id {practicesId}. Exception: {e}");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }

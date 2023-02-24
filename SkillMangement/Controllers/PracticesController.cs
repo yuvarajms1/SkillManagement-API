@@ -32,7 +32,7 @@ namespace SkillManagement.API.Controllers
             }
             catch (Exception e)
             {
-                Log.LogError($"Failed to get practices. Exception: {e}");
+                // Log.LogError($"Failed to get practices. Exception: {e}");
                 return StatusCode((int)HttpStatusCode.InternalServerError);
             }
         }
